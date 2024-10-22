@@ -14,6 +14,8 @@ public class Song {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
+
+
     private String genre;
     private Long length;
 
