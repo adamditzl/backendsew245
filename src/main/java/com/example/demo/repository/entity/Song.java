@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.example.demo.repository.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Song {
@@ -14,9 +14,9 @@ public class Song {
     private String title;
     private String artist;
     private String genre;
-    private int length;
+    private Long length;
 
-    // Getter und Setter
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -49,11 +49,11 @@ public class Song {
         this.genre = genre;
     }
 
-    public int getLength() {
+    public Long getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(Long length) {
         this.length = length;
     }
 }
