@@ -9,17 +9,14 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-
     @ManyToOne
-    @JoinColumn(name = "artist_id")
+    @JoinColumn(name = "artist_id", nullable = false)
     private Artist artist;
-
-
 
     private String genre;
     private Long length;
 
-    // Getters and Setters
+        // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -36,9 +33,10 @@ public class Song {
         this.title = title;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public Long getArtistId() {
+        return artist != null ? artist.getId() : null; // Ensure artist is not null
     }
+
 
     public void setArtist(Artist artist) {
         this.artist = artist;

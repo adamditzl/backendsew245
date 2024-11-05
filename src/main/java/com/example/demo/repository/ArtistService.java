@@ -30,3 +30,4 @@ public class ArtistService {
         artistRepository.deleteById(id);
     }
 }
+

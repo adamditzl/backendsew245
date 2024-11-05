@@ -7,11 +7,10 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Artist {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-    private String name;
+    private String name; // Ensure you have this property
 
     // Getters and Setters
     public Long getId() {
@@ -30,3 +29,4 @@ public class Artist {
         this.name = name;
     }
 }
+
