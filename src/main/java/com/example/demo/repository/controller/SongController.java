@@ -15,10 +15,12 @@ import java.util.List;
 @RequestMapping("/api/songs")
 @CrossOrigin(origins = "http://localhost:5173") // Allows Cross-Origin requests from the frontend application
 public class SongController {
+    private final SongService songService;
 
     @Autowired
-    private SongService songService;
-
+    public SongController(SongService songService) {
+        this.songService = songService;
+    }
     @Autowired
     private ArtistRepository artistRepository; // Inject ArtistRepository
 
