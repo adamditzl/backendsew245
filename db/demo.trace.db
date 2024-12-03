@@ -1,0 +1,4 @@
+2024-12-03 14:58:18.894282+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT * FROM ARTIST ID [*]NAME ID"
+Syntax error in SQL statement "SELECT * FROM ARTIST ID [*]NAME ID"; SQL statement:
+SELECT * FROM ARTIST ID NAME ID [42000-224]
