@@ -2,6 +2,7 @@ package com.example.demo.repository.controller;
 
 import com.example.demo.repository.ArtistService;
 import com.example.demo.repository.entity.Artist;
+import com.example.demo.repository.entity.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,11 @@ public class ArtistController {
 
     @Autowired
     private ArtistService artistService;
+
+    @GetMapping("/{id}")
+    public Artist getArtistbyID(@PathVariable Long id) {
+        return artistService.getArtistById(id);
+    }
 
     @GetMapping
     public List<Artist> getAllArtists() {

@@ -6,13 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+
 public class Artist {
     @Id
     @GeneratedValue
     private Long id;
-    private String name; // Ensure you have this property
+    private String name;
 
-    // Getters and Setters
+    // Getter und Setter
     public Long getId() {
         return id;
     }
@@ -28,5 +29,14 @@ public class Artist {
     public void setName(String name) {
         this.name = name;
     }
-}
 
+
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}

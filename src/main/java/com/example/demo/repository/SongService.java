@@ -27,7 +27,7 @@ public class SongService {
     // Retrieve all songs
     public List<Song> getAllSongs() {
         return songRepository.findAll();
-    }
+}
 
     // Retrieve a song by its ID
     public Song getSongById(Long id) {
@@ -47,7 +47,7 @@ public class SongService {
     public Song saveSong(Song song) {  // artistId als Parameter hinzugefügt
         Artist artist = artistRepository.findById(song.getArtistId())
                 .orElseThrow(() -> new RuntimeException("Artist not found"));
-        song.setArtist(artist);
+        song.setArtist(artist); // Ensure the artist entity is set
         return songRepository.save(song);
     }
 

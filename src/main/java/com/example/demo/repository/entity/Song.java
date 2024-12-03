@@ -3,12 +3,15 @@ package com.example.demo.repository.entity;
 import jakarta.persistence.*;
 
 @Entity
+
 public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
     private Artist artist;
@@ -16,7 +19,7 @@ public class Song {
     private String genre;
     private Long length;
 
-        // Getters and Setters
+    // Getter und Setter
     public Long getId() {
         return id;
     }
@@ -34,9 +37,12 @@ public class Song {
     }
 
     public Long getArtistId() {
-        return artist != null ? artist.getId() : null; // Ensure artist is not null
+        return artist != null ? artist.getId() : null;
     }
 
+    public Artist getArtist() {
+        return artist;
+    }
 
     public void setArtist(Artist artist) {
         this.artist = artist;
@@ -57,4 +63,16 @@ public class Song {
     public void setLength(Long length) {
         this.length = length;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artistName='" + (artist != null ? artist.getName() : "null") + '\'' +
+                ", genre='" + genre + '\'' +
+                ", length=" + length +
+                '}';
+    }
+
 }
