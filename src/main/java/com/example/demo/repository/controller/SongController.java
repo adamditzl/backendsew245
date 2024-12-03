@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/songs")
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:5173") // Allows Cross-Origin requests from the frontend application
 public class SongController {
     private final SongService songService;
@@ -27,17 +27,17 @@ public class SongController {
     private ArtistRepository artistRepository; // Inject ArtistRepository
 private SongRepository SongRepository;
     // Get all songs GET
-    @GetMapping
+    @GetMapping("/songs")
     public List<Song> getAllSongs() {
         return songService.getAllSongs();
     }
 
     // Get song by ID GET
-    @GetMapping("/{id}")
+    @GetMapping("/songs/{id}")
     public Song getSongById(@PathVariable Long id) {
         return songService.getSongById(id);
     }
-    @PostMapping
+    @PostMapping("/songs")
     public ResponseEntity<?> createSong(@RequestBody Song song) {
 
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+song.getArtistId());
@@ -63,7 +63,7 @@ private SongRepository SongRepository;
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/songs/{id}")
     public Song updateSong(@PathVariable Long id, @RequestBody Song updatedSong) {
         return songService.updateSong(id, updatedSong, updatedSong.getArtistId()); // Get artistId from updatedSong
     }
@@ -71,13 +71,13 @@ private SongRepository SongRepository;
 
 
     // Delete a song by ID DELETE
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/songs/{id}")
     public void deleteSong(@PathVariable Long id) {
         songService.deleteSong(id);
     }
 
     // Search for songs based on a query
-    @GetMapping("/search")
+    @GetMapping("/songs/search")
     public List<Song> searchSongs(@RequestParam String query) {
         return songService.searchSongs(query);
     }
