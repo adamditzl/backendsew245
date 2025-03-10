@@ -4,13 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
-
+@CrossOrigin
 public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Name is required")
     private String name;
 
     // Getter und Setter
@@ -33,6 +37,7 @@ public class Artist {
 
 
     @Override
+    @CrossOrigin
     public String toString() {
         return "Artist{" +
                 "id=" + id +
