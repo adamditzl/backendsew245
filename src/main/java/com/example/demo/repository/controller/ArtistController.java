@@ -17,21 +17,25 @@ public class ArtistController {
     private ArtistService artistService;
 
     @GetMapping("/{id}")
+    @CrossOrigin
     public Artist getArtistbyID(@PathVariable Long id) {
         return artistService.getArtistById(id);
     }
 
     @GetMapping
+    @CrossOrigin
     public List<Artist> getAllArtists() {
         return artistService.getAllArtists();
     }
 
     @PostMapping
+    @CrossOrigin
     public Artist createArtist(@RequestBody Artist artist) {
         return artistService.saveArtist(artist);
     }
 
     @DeleteMapping("/{id}")
+    @CrossOrigin
     public void deleteArtist(@PathVariable Long id) {
         artistService.deleteArtist(id);
     }

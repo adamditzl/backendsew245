@@ -1,25 +1,36 @@
 package com.example.demo.repository.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import java.util.Arrays;
 
 @Entity
-
 public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Titel darf nicht leer sein") // Titel darf nicht null oder leer sein
     private String title;
+
+    @NotBlank(message = "Genre darf nicht leer sein") // Genre darf nicht null oder leer sein
+    private String genre;
+
+    @Min(value = 1, message = "Länge muss mindestens 1 Sekunde betragen") // Länge muss mindestens 1 sein
+    private Long length;
+
+    @Lob
+    @NotNull(message = "Audiodatei darf nicht null sein") // Daten dürfen nicht null sein
+    private byte[] data;
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
+    @NotNull(message = "Künstler darf nicht null sein") // Der Künstler darf nicht null sein
     private Artist artist;
 
-    private String genre;
-    private Long length;
+    // Getters und Setters
 
-    // Getter und Setter
     public Long getId() {
         return id;
     }
@@ -34,18 +45,6 @@ public class Song {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Long getArtistId() {
-        return artist != null ? artist.getId() : null;
-    }
-
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
     }
 
     public String getGenre() {
@@ -64,15 +63,19 @@ public class Song {
         this.length = length;
     }
 
-    @Override
-    public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", artistName='" + (artist != null ? artist.getName() : "null") + '\'' +
-                ", genre='" + genre + '\'' +
-                ", length=" + length +
-                '}';
+    public byte[] getData() {
+        return data;
     }
 
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
 }
