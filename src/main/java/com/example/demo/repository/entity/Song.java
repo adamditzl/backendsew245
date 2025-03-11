@@ -1,32 +1,23 @@
 package com.example.demo.repository.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 
 @Entity
+
 public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Titel darf nicht leer sein")
     private String title;
-
-    @NotBlank(message = "Genre darf nicht leer sein")
-    private String genre;
-
-    @Min(value = 1, message = "Länge muss mindestens 1 Sekunde betragen")
-    private Long length;
-
-    // Speichern der Audio-Datei als Base64-codierter String
-    @Lob
-    private String data;  // Ändere den Datentyp von byte[] auf String
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
-    @NotNull(message = "Künstler darf nicht null sein")
     private Artist artist;
+
+    private String genre;
+    private Long length;
 
     // Getter und Setter
     public Long getId() {
@@ -45,6 +36,18 @@ public class Song {
         this.title = title;
     }
 
+    public Long getArtistId() {
+        return artist != null ? artist.getId() : null;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
     public String getGenre() {
         return genre;
     }
@@ -61,19 +64,15 @@ public class Song {
         this.length = length;
     }
 
-    public String getData() {
-        return data;
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artistName='" + (artist != null ? artist.getName() : "null") + '\'' +
+                ", genre='" + genre + '\'' +
+                ", length=" + length +
+                '}';
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
 }
